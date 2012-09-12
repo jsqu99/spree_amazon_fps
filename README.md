@@ -1,8 +1,7 @@
 SpreeAmazonFps
 ==============
 
-Introduction goes here.
-
+This is a WIP.  Do not use (just yet)
 
 Example
 =======
