@@ -9,7 +9,7 @@ module Spree
                              Billing::AmazonFps.current[:secret_access_key],
                              Billing::AmazonFps.current[:test_mode])
 
-      puts "request host: #{request.host}/receive_amazon_fps_token"
+      Rails.logger.debug "request host: #{request.host}/receive_amazon_fps_token"
       pipeline_options = {
 #        :return_url => "https://#{request.host}/receive_amazon_fps_token",
         :return_url => "http://localhost:3000/receive_amazon_fps_token",
@@ -22,7 +22,7 @@ module Spree
     end
 
     def receive_amazon_fps_token 
-      puts "params: #{params.inspect}"
+      Rails.logger.debug "params: #{params.inspect}"
       # figure out what order this maps to
       order = Order.find_by_number params["callerReference"].split('-')[1]
 
@@ -33,6 +33,7 @@ module Spree
       payment.amount = order.total
       payment.save!
 
+      # save the relevant 
       order.amazon_fps_sender_token_id = params["tokenID"]
       order.save!
       payment.started_processing!
@@ -54,9 +55,12 @@ module Spree
         redirect_to checkout_state_path(order.state)
       end
 =end
-        redirect_to order_path(order)
+      flash.notice = t(:order_processed_successfully_amazon_fps)
+      flash[:commerce_tracking] = "nothing special"
+      respond_with(@order, :location => order_path(@order))
     end
 
+    # possibly make some comparisons w/ the tokens we receive w/ what we have in the order model for security
     def receive_ipn
       binding.pry
     end

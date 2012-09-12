@@ -6,3 +6,4 @@ en:
     capture: Capture
     problem_with_payment: The Amazon payment did not complete.  Please try again
   amazon_fps_status: Amazon FPS Status
+  order_processed_successfully_amazon_fps: "Your order has been processed successfully.  Your order will ship once amazon confirms payment"
