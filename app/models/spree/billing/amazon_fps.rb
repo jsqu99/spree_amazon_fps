@@ -41,7 +41,7 @@ module Spree
 
         order = payment.order
 
-        request = Remit::Pay::Request.new(:caller_reference => "#{order.number}-#{Time.now.to_i}",
+        request = Remit::Pay::Request.new(:caller_reference => "#{order.number}-#{Spree::Config[:site_name]}-#{Time.now.to_i}",
                                           :charge_fee_to    => 'Caller',
                                           :sender_token_id  => order.amazon_fps_sender_token_id,
                                           :transaction_amount => Remit::RequestTypes::Amount.new(:value => order.total.to_s, :currency_code => 'USD'))
@@ -53,6 +53,7 @@ module Spree
         #these are the possible statuses. Cancelled Failure Pending Reserved Success)
         order.update_attributes(:amazon_fps_status => response.pay_result.transaction_status, :amazon_fps_transaction_id => response.pay_result.transaction_id)
 
+#        payment.pend!
 
 =begin
         case (order.amazon_fps_status.present? && order.amazon_fps_status.downcase)

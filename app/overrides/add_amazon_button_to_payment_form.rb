@@ -4,7 +4,7 @@ Deface::Override.new(:virtual_path => 'spree/checkout/_payment',
                      :text => %(
     <p>
       <label>
-        <%= link_to (image_tag 'http://g-ecx.images-amazon.com/images/G/01/cba/b/sg3.jpg'), pay_using_amazon_fps_url %>
+        <%= image_tag 'http://g-ecx.images-amazon.com/images/G/01/cba/b/sg3.jpg' %>
       </label>
     </p>
 
