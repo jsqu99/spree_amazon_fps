@@ -1,0 +1,18 @@
+<% if Spree::Billing::AmazonFps.current && order.payment_method == Spree::Billing::AmazonFps.current %>
+  <td>
+    <p>
+      <%= order.amazon_fps_status %>
+    </p>
+    <p>
+    <%# if order.allow_cancel? && order.payment_state != 'paid' %>
+      <%#form_tag cancel_google_checkout_order_admin_order_path(order) , :method => :get do %>
+<!--        <p><%= t(:reason)%>:<br /><%= text_field_tag "#{order.number}[reason]" %></p> -->
+        <!--<p><%= t(:comment)%>:<br /><%= text_field_tag "#{order.number}[comment]" %></p>-->
+<!--        <p><%= submit_tag t("google_checkout.cancel_order"), :onclick => "if (jQuery('##{order.number}_reason').val().length == 0) { jQuery.alerts.alert('#{t(:fill_reason)}'); return false; }" %></p> -->
+      <%# end %>
+    <%# end %>
+    </p>
+  </td> 
+<% else %>
+  <td></td>
+<% end %>
