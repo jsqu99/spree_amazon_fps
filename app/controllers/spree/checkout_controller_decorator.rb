@@ -16,8 +16,8 @@ module Spree
         Rails.logger.debug "request host: #{request.host}/receive_amazon_fps_token"
 
         pipeline_options = {
-          #        :return_url => "https://#{request.host}/receive_amazon_fps_token",
-          :return_url => "http://localhost:3000/receive_amazon_fps_token",
+          :return_url => "https://#{request.host}/receive_amazon_fps_token",
+          #:return_url => "http://localhost:3000/receive_amazon_fps_token",
           :caller_reference => "#{current_order.number}-#{Spree::Config[:site_name]}-#{Time.now.to_i}",
           :transaction_amount => current_order.total.to_s
         }
