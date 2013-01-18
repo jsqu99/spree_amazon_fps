@@ -1,0 +1,10 @@
+<!--
+  insert_bottom '.payment-info'
+-->
+<% if order.payment && order.payment.payment_method.class.to_s == 'Spree::Billing::AmazonFps' %>
+  <span class="cc-type">
+    <%= image_tag "amazon.png" %>
+  </span>
+<% end %>
+
+
